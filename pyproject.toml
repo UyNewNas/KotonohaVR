@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kotonoha-vr"
+version = "0.1.0"
+description = "A SteamVR bilingual reply assistant with GPT and Codex providers"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+dependencies = ["PySide6>=6.8,<7", "httpx>=0.28,<1", "numpy>=1.26,<3"]
+
+[project.optional-dependencies]
+vr = ["openvr>=2.12,<3"]
+windows = ["PyAudioWPatch>=0.2.12.7; sys_platform == 'win32'", "openvr>=2.12,<3"]
+local-asr = ["faster-whisper>=1.1,<2"]
+dev = ["pytest>=8,<10", "pyinstaller>=6,<7"]
+
+[project.scripts]
+kotonoha-vr = "kotonoha_vr.__main__:main"
+
+[project.urls]
+Repository = "https://github.com/UyNewNas/KotonohaVR"
+Issues = "https://github.com/UyNewNas/KotonohaVR/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+kotonoha_vr = ["resources/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
