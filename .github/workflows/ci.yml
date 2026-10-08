@@ -35,11 +35,11 @@ jobs:
             requirements-tested.txt
       - name: Install dependencies
         run: python -m pip install -c requirements-tested.txt -e ".[dev,windows]"
-      - name: Install Chinese fonts for the Linux screenshot
+      - name: Install Linux Qt runtime and Chinese fonts
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk
+          sudo apt-get install -y libegl1 fonts-noto-cjk
       - name: Tests without real accounts or hardware
         run: python -m pytest -q
       - name: Start the source app and verify its offline demo
